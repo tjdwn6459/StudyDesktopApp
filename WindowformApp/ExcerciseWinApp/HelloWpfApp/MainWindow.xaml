@@ -1,0 +1,26 @@
+﻿<Window x:Class="HelloWpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HelloWpfApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="300" Width="450">
+    <Grid RenderTransformOrigin="0.504,0.298">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <Label Name="LblHEllo"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               FontSize="40"
+               FontWeight="Bold"
+               Content="HEllo World!" MouseLeftButtonDown="LblHEllo_MouseLeftButtonDown" 
+               Margin="96,103,104,103" Width="242" Height="63"
+
+               />
+
+
+    </Grid>
+</Window>
