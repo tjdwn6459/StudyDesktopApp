@@ -21,10 +21,26 @@ namespace BlinkerApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        DispatcherTimer timer;
+        DispatcherTimer timer = new DispatcherTimer();
         public MainWindow()
         {
             InitializeComponent();
+            timer.Interval = new TimeSpan(5000000); // 0.1초
+            timer.Tick += T_Tick;
+        }
+
+        public void T_Tick(object sender, EventArgs e)
+        {
+            if(BtnStarBlink.Background == Brushes.Red)
+            {
+                BtnStarBlink.ClearValue(Button.BackgroundProperty);
+                BtnStopBlink.Background = Brushes.Green;
+            }
+            else
+            {
+                BtnStopBlink.ClearValue(Button.BackgroundProperty);
+                BtnStarBlink.Background = Brushes.Red;
+            }
         }
 
         private void BtnStarBlink_Click(object sender, RoutedEventArgs e)

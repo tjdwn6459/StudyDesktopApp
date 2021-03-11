@@ -18,8 +18,8 @@
         
         <Button x:Name="BtnStarBlink" Grid.Row="0" Grid.Column="0" Content="" Click="BtnStarBlink_Click"/>
         <Button x:Name="BtnStopBlink" Grid.Row="0" Grid.Column="1" Content="" Click="BtnStopBlink_Click"/>
-        <Label Content="Label"  Grid.Row="1" />
-        <Label Content="Label" Grid.Column="1"  Grid.Row="1"/>
+        <Label Content="Start"  Grid.Row="1" />
+        <Label Content="Stop" Grid.Column="1"  Grid.Row="1"/>
 
     </Grid>
 </Window>
