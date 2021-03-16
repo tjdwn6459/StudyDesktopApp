@@ -49,6 +49,12 @@ namespace AddressInfoApp
                 MessageBox.Show("초기화를 하십시오.");
                 return;
             }
+
+            if(string.IsNullOrEmpty(TxtFullName.Text) || string.IsNullOrEmpty(TxtMobile.Text))
+            {
+                MessageBox.Show("값을 입력하세요");
+            }
+
             using (SqlConnection conn = new SqlConnection(connString))
             {
                 if (conn.State == ConnectionState.Closed)
@@ -128,25 +134,31 @@ namespace AddressInfoApp
                 MessageBox.Show("데이터를 선택하십시오.");
                 return;
             }
-            using (SqlConnection conn = new SqlConnection(connString))
+
+            if (MessageBox.Show("삭제하시겠습니까?", "삭제", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                == DialogResult.Yes)
             {
-                if (conn.State == ConnectionState.Closed)
-                    conn.Open();
 
-                string query = $"DELETE FROM Address WHERE idx = {result}";
+                using (SqlConnection conn = new SqlConnection(connString))
+                {
+                    if (conn.State == ConnectionState.Closed)
+                        conn.Open();
 
-                SqlCommand cmd = new SqlCommand(query, conn);
-                if (cmd.ExecuteNonQuery() == 1)
-                {
-                    MessageBox.Show("삭제 성공");
+                    string query = $"DELETE FROM Address WHERE idx = {result}";
+
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    if (cmd.ExecuteNonQuery() == 1)
+                    {
+                        MessageBox.Show("삭제 성공");
+                    }
+                    else
+                    {
+                        MessageBox.Show("삭제 실패");
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("삭제 실패");
-                }
+                ClearInput();
+                RefreshData();
             }
-            ClearInput();
-            RefreshData();
         }
 
         private void TxtFullName_KeyPress(object sender, KeyPressEventArgs e)
