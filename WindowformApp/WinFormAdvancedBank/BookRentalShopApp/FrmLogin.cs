@@ -41,17 +41,48 @@ namespace BookRentalShopApp
                 //SqlConnection 연결
                 using (SqlConnection conn = new SqlConnection(Helper.Common.ConnString))
                 {
+                    string strUserId = "";
                     if (conn.State == ConnectionState.Closed) conn.Open();
 
+                    var query = "SELECT userID FROM membertbl" +
+                        " WHERE userID = @userID" +
+                        "  AND passwords = @passwords ";
+
                     //SqlCommand 생성
-                    SqlCommand cmd = new SqlCommand();
+                    SqlCommand cmd = new SqlCommand(query, conn);
                     //SQLInjection 해킹 막기위해서 사용
-                    SqlParameter param;
+                    SqlParameter pUserID = new SqlParameter("@userId", SqlDbType.VarChar, 20);
+                    pUserID.Value = TxtUserId.Text;
+                    cmd.Parameters.Add(pUserID);
+
+                    SqlParameter pPasswords = new SqlParameter("@passwords", SqlDbType.VarChar, 20);
+                    pPasswords.Value = TxtPassword.Text;
+                    cmd.Parameters.Add(pPasswords);
 
                     //SqlDataReader 실행(1)
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     //Reader로 처리...
+                    reader.Read();
+                    strUserId = reader["userID"] != null ? reader["userID"].ToString() : "";
+
+                    //확인
+                    if (string.IsNullOrEmpty(strUserId))
+                    {
+                        MetroMessageBox.Show(this, "접속 실패", "로그인 실패", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    else
+                    {
+                        var updateQuery = $@"UPDATE membertbl SET
+                         lastLoginDt = GETDATE()
+                         loginIpAddr = '{Helper.Common.GetLocalIp()}'
+                        WHERE userId = '{strUserId}' "; // 2)로그인 정보 남기기
+                        cmd.CommandText = updateQuery;
+                        cmd.ExecuteNonQuery();
+                        MetroMessageBox.Show(this, "접속성공", "로그인 성공", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                    }
 
                 }
             }
