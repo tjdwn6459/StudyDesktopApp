@@ -16,7 +16,9 @@ namespace BookRentalShopApp
     public partial class FrmMember : MetroForm
     {
         #region 전역변수 영역
+
         private bool isNew = false; //false (수정) true(신규)
+
 
         #endregion
 

@@ -36,16 +36,21 @@ namespace BookRentalShopApp
             Environment.Exit(0);
         }
 
-        private void MnuDiv_Click(object sender, EventArgs e)
+        private void InitChildForm(Form frm, string strtitle)
         {
-            FrmDivCode frm = new FrmDivCode();
+            frm.Text = strtitle;
             frm.Dock = DockStyle.Fill;
             frm.MdiParent = this; //FrmDivCode 가 frmMain 의 자식임을 말해준다 이렇게 설정 안하면 따로 뜬다
             frm.Show();
             frm.Width = this.ClientSize.Width - 10; //추가
             frm.Height = this.Height - menuStrip1.Height; //추가
             frm.WindowState = FormWindowState.Maximized;
-            
+        }
+
+        private void MnuDiv_Click(object sender, EventArgs e)
+        {
+            FrmDivCode frm = new FrmDivCode();
+            InitChildForm(frm, "구분코드 관리");
 
         }
 
@@ -65,13 +70,20 @@ namespace BookRentalShopApp
 
         private void MnuMember_Click(object sender, EventArgs e)
         {
-            FrmMember frm = new FrmMember();
-            frm.Dock = DockStyle.Fill;
-            frm.MdiParent = this; //FrmDivCode 가 frmMain 의 자식임을 말해준다 이렇게 설정 안하면 따로 뜬다
-            frm.Show();
-            frm.Width = this.ClientSize.Width - 10; //추가
-            frm.Height = this.Height - menuStrip1.Height; //추가
-            frm.WindowState = FormWindowState.Maximized;
+            FrmRental frm = new FrmRental();
+            InitChildForm(frm, "회원관리");
+        }
+
+        private void MnuBooks_Click(object sender, EventArgs e)
+        {
+            FrmBooks frm = new FrmBooks();
+            InitChildForm(frm, "책 관리");
+        }
+
+        private void MnuRental_Click(object sender, EventArgs e)
+        {
+            FrmRental frm = new FrmRental();
+            InitChildForm(frm, "대여 관리");
         }
     }
 }

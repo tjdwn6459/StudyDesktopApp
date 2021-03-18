@@ -34,7 +34,7 @@ namespace BookRentalShopApp
             this.관리MToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuDiv = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuMember = new System.Windows.Forms.ToolStripMenuItem();
-            this.Mnubook = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuBooks = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.MnuRental = new System.Windows.Forms.ToolStripMenuItem();
             this.MnuExit = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,7 +57,7 @@ namespace BookRentalShopApp
             this.관리MToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MnuDiv,
             this.MnuMember,
-            this.Mnubook,
+            this.MnuBooks,
             this.toolStripMenuItem1,
             this.MnuRental});
             this.관리MToolStripMenuItem.Name = "관리MToolStripMenuItem";
@@ -78,11 +78,12 @@ namespace BookRentalShopApp
             this.MnuMember.Text = "회원(&P)";
             this.MnuMember.Click += new System.EventHandler(this.MnuMember_Click);
             // 
-            // Mnubook
+            // MnuBooks
             // 
-            this.Mnubook.Name = "Mnubook";
-            this.Mnubook.Size = new System.Drawing.Size(180, 22);
-            this.Mnubook.Text = "도서(&B)";
+            this.MnuBooks.Name = "MnuBooks";
+            this.MnuBooks.Size = new System.Drawing.Size(180, 22);
+            this.MnuBooks.Text = "도서(&B)";
+            this.MnuBooks.Click += new System.EventHandler(this.MnuBooks_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -94,6 +95,7 @@ namespace BookRentalShopApp
             this.MnuRental.Name = "MnuRental";
             this.MnuRental.Size = new System.Drawing.Size(180, 22);
             this.MnuRental.Text = "대여(&R)";
+            this.MnuRental.Click += new System.EventHandler(this.MnuRental_Click);
             // 
             // MnuExit
             // 
@@ -131,7 +133,7 @@ namespace BookRentalShopApp
         private System.Windows.Forms.ToolStripMenuItem 관리MToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MnuDiv;
         private System.Windows.Forms.ToolStripMenuItem MnuMember;
-        private System.Windows.Forms.ToolStripMenuItem Mnubook;
+        private System.Windows.Forms.ToolStripMenuItem MnuBooks;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem MnuRental;
         private System.Windows.Forms.ToolStripMenuItem MnuExit;
