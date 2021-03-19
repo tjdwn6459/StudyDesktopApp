@@ -138,7 +138,6 @@ namespace BookRentalShopApp
             this.BtnSearchBook.Size = new System.Drawing.Size(26, 26);
             this.BtnSearchBook.TabIndex = 6;
             this.BtnSearchBook.UseVisualStyleBackColor = true;
-            this.BtnSearchBook.Click += new System.EventHandler(this.BtnSearchBook_Click);
             // 
             // BtnSearchMember
             // 
