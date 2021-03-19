@@ -4,10 +4,10 @@ C#데스크톱 앱 개발 학습 리포지토리
 -----------------------------------
 ###### BookRentalShopApp
 ----------------------------------
- # [책관리] 
-![책관리](https://user-images.githubusercontent.com/77951833/111721869-17c91400-88a4-11eb-8340-3e4342a80bc1.png)
+ ## [책관리] 
+# ![책관리](https://user-images.githubusercontent.com/77951833/111721869-17c91400-88a4-11eb-8340-3e4342a80bc1.png)
 
-![책관리 신규](https://user-images.githubusercontent.com/77951833/111721908-26afc680-88a4-11eb-8c8c-dfe0d1563a1f.png)
+# ![책관리 신규](https://user-images.githubusercontent.com/77951833/111721908-26afc680-88a4-11eb-8c8c-dfe0d1563a1f.png)
 
 # [대여관리] 
 
