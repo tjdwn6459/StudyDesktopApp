@@ -30,6 +30,13 @@ namespace BookRentalShopApp
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.TxtReturnDate = new MetroFramework.Controls.MetroTextBox();
+            this.CboRentalState = new MetroFramework.Controls.MetroComboBox();
+            this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
+            this.BtnSearchBook = new System.Windows.Forms.Button();
+            this.BtnSearchMember = new System.Windows.Forms.Button();
+            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
+            this.DtpRentalDate = new MetroFramework.Controls.MetroDateTime();
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.BtnSave = new MetroFramework.Controls.MetroButton();
@@ -41,13 +48,6 @@ namespace BookRentalShopApp
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.DgvData = new System.Windows.Forms.DataGridView();
-            this.DtpRentalDate = new MetroFramework.Controls.MetroDateTime();
-            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
-            this.DtpReturnDate = new MetroFramework.Controls.MetroDateTime();
-            this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
-            this.CboRentalState = new MetroFramework.Controls.MetroComboBox();
-            this.BtnSearchBook = new System.Windows.Forms.Button();
-            this.BtnSearchMember = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvData)).BeginInit();
             this.SuspendLayout();
@@ -56,11 +56,11 @@ namespace BookRentalShopApp
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.TxtReturnDate);
             this.groupBox1.Controls.Add(this.CboRentalState);
             this.groupBox1.Controls.Add(this.metroLabel6);
             this.groupBox1.Controls.Add(this.BtnSearchBook);
             this.groupBox1.Controls.Add(this.BtnSearchMember);
-            this.groupBox1.Controls.Add(this.DtpReturnDate);
             this.groupBox1.Controls.Add(this.metroLabel3);
             this.groupBox1.Controls.Add(this.DtpRentalDate);
             this.groupBox1.Controls.Add(this.metroLabel5);
@@ -79,8 +79,95 @@ namespace BookRentalShopApp
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "상세";
-            //this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             this.groupBox1.Resize += new System.EventHandler(this.FrmDivCode_Resize);
+            // 
+            // TxtReturnDate
+            // 
+            // 
+            // 
+            // 
+            this.TxtReturnDate.CustomButton.Image = null;
+            this.TxtReturnDate.CustomButton.Location = new System.Drawing.Point(178, 1);
+            this.TxtReturnDate.CustomButton.Name = "";
+            this.TxtReturnDate.CustomButton.Size = new System.Drawing.Size(15, 15);
+            this.TxtReturnDate.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.TxtReturnDate.CustomButton.TabIndex = 1;
+            this.TxtReturnDate.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.TxtReturnDate.CustomButton.UseSelectable = true;
+            this.TxtReturnDate.CustomButton.Visible = false;
+            this.TxtReturnDate.Lines = new string[0];
+            this.TxtReturnDate.Location = new System.Drawing.Point(114, 196);
+            this.TxtReturnDate.MaxLength = 32767;
+            this.TxtReturnDate.Name = "TxtReturnDate";
+            this.TxtReturnDate.PasswordChar = '\0';
+            this.TxtReturnDate.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.TxtReturnDate.SelectedText = "";
+            this.TxtReturnDate.SelectionLength = 0;
+            this.TxtReturnDate.SelectionStart = 0;
+            this.TxtReturnDate.ShortcutsEnabled = true;
+            this.TxtReturnDate.Size = new System.Drawing.Size(194, 17);
+            this.TxtReturnDate.TabIndex = 16;
+            this.TxtReturnDate.UseSelectable = true;
+            this.TxtReturnDate.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.TxtReturnDate.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // CboRentalState
+            // 
+            this.CboRentalState.FormattingEnabled = true;
+            this.CboRentalState.ItemHeight = 23;
+            this.CboRentalState.Location = new System.Drawing.Point(114, 233);
+            this.CboRentalState.Name = "CboRentalState";
+            this.CboRentalState.Size = new System.Drawing.Size(156, 29);
+            this.CboRentalState.TabIndex = 9;
+            this.CboRentalState.UseSelectable = true;
+            // 
+            // metroLabel6
+            // 
+            this.metroLabel6.AutoSize = true;
+            this.metroLabel6.Location = new System.Drawing.Point(41, 233);
+            this.metroLabel6.Name = "metroLabel6";
+            this.metroLabel6.Size = new System.Drawing.Size(72, 19);
+            this.metroLabel6.TabIndex = 15;
+            this.metroLabel6.Text = "대여상태 :";
+            // 
+            // BtnSearchBook
+            // 
+            this.BtnSearchBook.Image = global::BookRentalShopApp.Properties.Resources.KakaoTalk_20210318_145727771;
+            this.BtnSearchBook.Location = new System.Drawing.Point(296, 106);
+            this.BtnSearchBook.Name = "BtnSearchBook";
+            this.BtnSearchBook.Size = new System.Drawing.Size(26, 26);
+            this.BtnSearchBook.TabIndex = 6;
+            this.BtnSearchBook.UseVisualStyleBackColor = true;
+            this.BtnSearchBook.Click += new System.EventHandler(this.BtnSearchBook_Click);
+            // 
+            // BtnSearchMember
+            // 
+            this.BtnSearchMember.Image = global::BookRentalShopApp.Properties.Resources.KakaoTalk_20210318_145727771;
+            this.BtnSearchMember.Location = new System.Drawing.Point(296, 76);
+            this.BtnSearchMember.Name = "BtnSearchMember";
+            this.BtnSearchMember.Size = new System.Drawing.Size(26, 26);
+            this.BtnSearchMember.TabIndex = 4;
+            this.BtnSearchMember.UseVisualStyleBackColor = true;
+            this.BtnSearchMember.Click += new System.EventHandler(this.BtnSearchMember_Click);
+            // 
+            // metroLabel3
+            // 
+            this.metroLabel3.AutoSize = true;
+            this.metroLabel3.Location = new System.Drawing.Point(55, 194);
+            this.metroLabel3.Name = "metroLabel3";
+            this.metroLabel3.Size = new System.Drawing.Size(58, 19);
+            this.metroLabel3.TabIndex = 12;
+            this.metroLabel3.Text = "반납일 :";
+            // 
+            // DtpRentalDate
+            // 
+            this.DtpRentalDate.CustomFormat = "yyyy-MM-dd";
+            this.DtpRentalDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DtpRentalDate.Location = new System.Drawing.Point(114, 145);
+            this.DtpRentalDate.MinimumSize = new System.Drawing.Size(0, 29);
+            this.DtpRentalDate.Name = "DtpRentalDate";
+            this.DtpRentalDate.Size = new System.Drawing.Size(200, 29);
+            this.DtpRentalDate.TabIndex = 7;
             // 
             // metroLabel5
             // 
@@ -265,75 +352,6 @@ namespace BookRentalShopApp
             this.DgvData.TabIndex = 1;
             this.DgvData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvData_CellClick);
             // 
-            // DtpRentalDate
-            // 
-            this.DtpRentalDate.CustomFormat = "yyyy-MM-dd";
-            this.DtpRentalDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DtpRentalDate.Location = new System.Drawing.Point(114, 145);
-            this.DtpRentalDate.MinimumSize = new System.Drawing.Size(0, 29);
-            this.DtpRentalDate.Name = "DtpRentalDate";
-            this.DtpRentalDate.Size = new System.Drawing.Size(200, 29);
-            this.DtpRentalDate.TabIndex = 7;
-            // 
-            // metroLabel3
-            // 
-            this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(55, 194);
-            this.metroLabel3.Name = "metroLabel3";
-            this.metroLabel3.Size = new System.Drawing.Size(58, 19);
-            this.metroLabel3.TabIndex = 12;
-            this.metroLabel3.Text = "반납일 :";
-            // 
-            // DtpReturnDate
-            // 
-            this.DtpReturnDate.CustomFormat = "yyyy-MM-dd";
-            this.DtpReturnDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DtpReturnDate.Location = new System.Drawing.Point(114, 194);
-            this.DtpReturnDate.MinimumSize = new System.Drawing.Size(0, 29);
-            this.DtpReturnDate.Name = "DtpReturnDate";
-            this.DtpReturnDate.Size = new System.Drawing.Size(200, 29);
-            this.DtpReturnDate.TabIndex = 8;
-            // 
-            // metroLabel6
-            // 
-            this.metroLabel6.AutoSize = true;
-            this.metroLabel6.Location = new System.Drawing.Point(41, 233);
-            this.metroLabel6.Name = "metroLabel6";
-            this.metroLabel6.Size = new System.Drawing.Size(72, 19);
-            this.metroLabel6.TabIndex = 15;
-            this.metroLabel6.Text = "대여상태 :";
-            // 
-            // CboRentalState
-            // 
-            this.CboRentalState.FormattingEnabled = true;
-            this.CboRentalState.ItemHeight = 23;
-            this.CboRentalState.Location = new System.Drawing.Point(114, 233);
-            this.CboRentalState.Name = "CboRentalState";
-            this.CboRentalState.Size = new System.Drawing.Size(156, 29);
-            this.CboRentalState.TabIndex = 9;
-            this.CboRentalState.UseSelectable = true;
-            // 
-            // BtnSearchBook
-            // 
-            this.BtnSearchBook.Image = global::BookRentalShopApp.Properties.Resources.KakaoTalk_20210318_145727771;
-            this.BtnSearchBook.Location = new System.Drawing.Point(296, 106);
-            this.BtnSearchBook.Name = "BtnSearchBook";
-            this.BtnSearchBook.Size = new System.Drawing.Size(26, 26);
-            this.BtnSearchBook.TabIndex = 6;
-            this.BtnSearchBook.Text = "S";
-            this.BtnSearchBook.UseVisualStyleBackColor = true;
-            this.BtnSearchBook.Click += new System.EventHandler(this.BtnSearchBook_Click);
-            // 
-            // BtnSearchMember
-            // 
-            this.BtnSearchMember.Image = global::BookRentalShopApp.Properties.Resources.KakaoTalk_20210318_145727771;
-            this.BtnSearchMember.Location = new System.Drawing.Point(296, 76);
-            this.BtnSearchMember.Name = "BtnSearchMember";
-            this.BtnSearchMember.Size = new System.Drawing.Size(26, 26);
-            this.BtnSearchMember.TabIndex = 4;
-            this.BtnSearchMember.UseVisualStyleBackColor = true;
-            this.BtnSearchMember.Click += new System.EventHandler(this.BtnSearchMember_Click);
-            // 
             // FrmRental
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -371,7 +389,7 @@ namespace BookRentalShopApp
         private MetroFramework.Controls.MetroDateTime DtpRentalDate;
         private MetroFramework.Controls.MetroComboBox CboRentalState;
         private MetroFramework.Controls.MetroLabel metroLabel6;
-        private MetroFramework.Controls.MetroDateTime DtpReturnDate;
         private MetroFramework.Controls.MetroLabel metroLabel3;
+        private MetroFramework.Controls.MetroTextBox TxtReturnDate;
     }
 }

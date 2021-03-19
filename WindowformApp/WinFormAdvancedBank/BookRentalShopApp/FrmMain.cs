@@ -41,6 +41,7 @@ namespace BookRentalShopApp
             frm.Text = strtitle;
             frm.Dock = DockStyle.Fill;
             frm.MdiParent = this; //FrmDivCode 가 frmMain 의 자식임을 말해준다 이렇게 설정 안하면 따로 뜬다
+            frm.FormBorderStyle = FormBorderStyle.None;
             frm.Show();
             frm.Width = this.ClientSize.Width - 10; //추가
             frm.Height = this.Height - menuStrip1.Height; //추가
@@ -70,7 +71,7 @@ namespace BookRentalShopApp
 
         private void MnuMember_Click(object sender, EventArgs e)
         {
-            FrmRental frm = new FrmRental();
+            FrmMember frm = new FrmMember();
             InitChildForm(frm, "회원관리");
         }
 

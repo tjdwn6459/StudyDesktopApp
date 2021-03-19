@@ -32,5 +32,14 @@ namespace BookRentalShopApp.Helper
 
             return localIP;
         }
+
+        internal static string ReplaceCmdText(string strSource)
+        {
+            var result = strSource.Replace("'", "＇");
+            result = result.Replace("--", ""); //-- 값을 못 쓰게 한다
+            result = result.Replace(";", "");
+
+            return result;
+        }
     }
 }

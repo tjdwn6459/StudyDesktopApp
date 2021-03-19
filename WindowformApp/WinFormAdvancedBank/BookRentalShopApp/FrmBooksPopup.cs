@@ -31,7 +31,7 @@ namespace BookRentalShopApp
         private void FrmDivCode_Load(object sender, EventArgs e)
         {
 
-            //RefreshData(); //테이블 조회
+            RefreshData(); //테이블 조회
 
 
         }
@@ -49,53 +49,9 @@ namespace BookRentalShopApp
 
         }
 
-        private void BtnSelect_Click(object sender, EventArgs e)
+        #region 커스텀 메서드 영역
+        private void RefreshData()
         {
-
-        }
-
-        private void BtnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-    }
-}
-
-
-
-
-
-
-
-    #region 커스텀 메서드 영역
-
-
-
-
-    /// <summary>
-    /// 삭제처리 프로세스
-    /// </summary>
-
-  /* private void DgvData_CellClick(object sender, DataGridViewCellEventArgs e)
-    {
-        if (e.RowIndex > -1) //선택된 값이 존재하면
-        {
-            var selData = DgvData.Rows[e.RowIndex];
-            //AsignToControls(selData);
-            //isNew = false; //수정
-
-
-        }
-    }*/
-
-
-    /// <summary>
-    /// 입력(수정)처리 프로세스
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    /*private void RefreshData()
-    {
             try
             {
                 using (SqlConnection conn = new SqlConnection(Helper.Common.ConnString))
@@ -108,55 +64,95 @@ namespace BookRentalShopApp
 	                                  ,d.Names as DivName
                                       ,b.Names
                                       ,b.ReleaseDate
-                                      ,b.ISBN
-                                      ,b.Price
-                                      ,b.Descriptions
                                   FROM dbo.bookstbl as b
-                                  INNER JOIN dbo.divtbl as d
-                                  on b.Division = d.Division
-                                "; // 210318 descriptions 컬럼 추가
-
+                                 INNER JOIN dbo.divtbl as d
+                                    ON b.Division = d.Division "; // 210318 Descriptions 컬럼추가
                     SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
-                    DataSet ds = new DataSet(); //adapter 데이터를 가져오기 위한것
+                    DataSet ds = new DataSet();
                     adapter.Fill(ds, "bookstbl");
-                    
+
                     DgvData.DataSource = ds;
                     DgvData.DataMember = "bookstbl";
-                    
                 }
             }
             catch (Exception ex)
             {
                 MetroMessageBox.Show(this, $"예외발생 : {ex.Message}", "오류", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-
-              
             }
 
+            // 데이터그리드뷰 컬럼 화면에서 안보이게
+            var column = DgvData.Columns[2]; // Division 컬럼
+            column.Visible = false;
 
+            column = DgvData.Columns[4];
+            column.Width = 250;
+            column.HeaderText = "도서명";
 
-        //데이터그리드뷰 컬럼(division) 화면에서 안보이게
-        //column.Visible = false;
-        //column.Visible = false;
+            column = DgvData.Columns[0]; // Idx
+            column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
-        //column.HeaderText = "도서명";
-
-
-        //column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
-    }
-
-        /// <summary>
-        /// 입력값 유효성 체크 메서드
-        /// </summary>
-        /// <returns></returns>
-       
-
-       
+            DgvData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        }
 
         #endregion
 
 
+        private void BtnSelect_Click(object sender, EventArgs e)
+        {
+            if (DgvData.SelectedRows.Count == 0)
+            {
+                MetroMessageBox.Show(this, "데이터를 선택하세요", "경고",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-    
-}*/
+            SelIdx = (int)DgvData.SelectedRows[0].Cells[0].Value;
+            SelName = DgvData.SelectedRows[0].Cells[4].Value.ToString();
+
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void BtnCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+/// <summary>
+/// 삭제처리 프로세스
+/// </summary>
+
+/* private void DgvData_CellClick(object sender, DataGridViewCellEventArgs e)
+  {
+      if (e.RowIndex > -1) //선택된 값이 존재하면
+      {
+          var selData = DgvData.Rows[e.RowIndex];
+          //AsignToControls(selData);
+          //isNew = false; //수정
+
+
+      }
+  }*/
+
+
+/// <summary>
+/// 입력(수정)처리 프로세스
+/// </summary>
+/// <param name="sender"></param>
+/// <param name="e"></param>
+
+#endregion

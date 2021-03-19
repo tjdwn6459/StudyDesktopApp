@@ -47,6 +47,8 @@ namespace BookRentalShopApp
                 TxtDivision.Text = selData.Cells[0].Value.ToString();
                 TxtNames.Text = selData.Cells[1].Value.ToString();
                 TxtDivision.ReadOnly = true;
+
+                isNew = false;  // 수정
             }
         }
 
@@ -54,7 +56,7 @@ namespace BookRentalShopApp
         {
             //  Validation
             if (CheckValidation() == false) return;
-
+            // 삭제 질문
             if (MetroMessageBox.Show(this, "삭제하시겠습니까?", "삭제",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
 
@@ -103,9 +105,7 @@ namespace BookRentalShopApp
                                         " WHERE[Division] = @Division ";
                     cmd.CommandText = query;
 
-                    SqlParameter pNames = new SqlParameter("@Names", SqlDbType.NVarChar, 45);
-                    pNames.Value = TxtNames.Text;
-                    cmd.Parameters.Add(pNames);
+                    
 
                     SqlParameter pDivision = new SqlParameter("@Division", SqlDbType.NVarChar, 45);
                     pDivision.Value = TxtDivision.Text;
@@ -160,7 +160,7 @@ namespace BookRentalShopApp
                 MetroMessageBox.Show(this, $"예외발생 : {ex.Message}", "오류", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
 
-                isNew = false;
+               
             }
         }
 
@@ -180,6 +180,7 @@ namespace BookRentalShopApp
                     cmd.Connection = conn;
 
                     var query = "";
+
                     if (isNew == true) //INSERT
                     {
                         query = "INSERT INTO dbo.divtbl " +

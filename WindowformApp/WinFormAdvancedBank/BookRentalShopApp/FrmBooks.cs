@@ -82,112 +82,8 @@ namespace BookRentalShopApp
             // Vaildation 체크
             if (CheckValidation() == false) return;
 
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(Helper.Common.ConnString))
-                {
-                    if (conn.State == ConnectionState.Closed) conn.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd.Connection = conn;
 
-                    var query = "";
-                    if (isNew == true) //INSERT
-                    {
-                        query = @"INSERT INTO [dbo].[bookstbl]
-                                               ([Author]
-                                               ,[Division]
-                                               ,[Names]
-                                               ,[ReleaseDate]
-                                               ,[ISBN]
-                                               ,[Price]
-                                               ,[Descriptions])
-                                         VALUES
-                                               (@Author,
-                                               @Division, 
-                                               @Names, 
-                                               @ReleaseDate, 
-                                               @ISBN, 
-                                               @Price, 
-                                               @Descriptions ) ";
-                    }
-                    else
-                    {
-                        query = @"UPDATE [dbo].[bookstbl]
-                                   SET [Author] = @Author
-                                      ,[Division] = @Division
-                                      ,[Names] = @Names
-                                      ,[ReleaseDate] = @ReleaseDate
-                                      ,[ISBN] = @ISBN
-                                      ,[Price] = @Price
-                                      ,[Descriptions] = @Descriptions
-                                 WHERE Idx = @Idx ";
-
-                    }
-                    cmd.CommandText = query;
-
-                    var pAuthor = new SqlParameter("@Author", SqlDbType.NVarChar, 50);
-                    pAuthor.Value = TxtAuthor.Text;
-                    cmd.Parameters.Add(pAuthor);
-
-
-                    var pDivision = new SqlParameter("@Division", SqlDbType.VarChar, 8);
-                    pDivision.Value = CboDivision.SelectedValue;
-                    cmd.Parameters.Add(pDivision);
-
-
-                    var pNames = new SqlParameter("@Names", SqlDbType.NVarChar, 100);
-                    pNames.Value = TxtNames.Text;
-                    cmd.Parameters.Add(pNames);
-
-                    var pReleaseDate = new SqlParameter("@ReleaseDate", SqlDbType.Date);
-                    pReleaseDate.Value = DtpReleaseDate.Value;
-                    cmd.Parameters.Add(pReleaseDate);
-
-
-                    var pISBN = new SqlParameter("@ISBN ", SqlDbType.VarChar, 200);
-                    pISBN.Value = TxtISBN.Text;
-                    cmd.Parameters.Add(pISBN);
-
-                    var pPrice = new SqlParameter("@Price", SqlDbType.Decimal);
-                    pPrice.Value = TxtPrice.Text;
-                    cmd.Parameters.Add(pPrice);
-
-
-                    var pDescriptions = new SqlParameter("@Descriptions", SqlDbType.NVarChar);
-                    pDescriptions.Value = TxtDescriptions.Text;
-                    cmd.Parameters.Add(pDescriptions);
-
-                    
-
-
-                    if (isNew == false)
-                    {
-                        var pIdx = new SqlParameter("@Idx", SqlDbType.Int);
-                        pIdx.Value = TxtIdx.Text;
-                        cmd.Parameters.Add(pIdx);
-                    }
-
-
-                    var result = cmd.ExecuteNonQuery();
-                    if (result == 1)
-                    {
-                        MetroMessageBox.Show(this, "저장 성공", "저장",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MetroMessageBox.Show(this, "저장 실패", "저장",
-                           MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-
-                }
-            }
-            catch (Exception ex)
-            {
-                MetroMessageBox.Show(this, $"예외발생 : {ex.Message}", "오류", MessageBoxButtons.OK,
-                   MessageBoxIcon.Error);
-            }
-
+            SaveData();
             RefreshData();
             ClearInput();
         }
@@ -261,7 +157,7 @@ namespace BookRentalShopApp
 
                     var query = "";
 
-                    query = "DELETE FROM [dbo].[membertbl] " +
+                    query = "DELETE FROM [dbo].[bookstbl] " +
                                         " WHERE[Idx] = @Idx ";
                     cmd.CommandText = query;
 
@@ -294,14 +190,6 @@ namespace BookRentalShopApp
                    MessageBoxIcon.Error);
             }
         }
-
-
-
-        /// <summary>
-        /// 입력(수정)처리 프로세스
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void RefreshData()
         {
             try
@@ -338,7 +226,7 @@ namespace BookRentalShopApp
                 MetroMessageBox.Show(this, $"예외발생 : {ex.Message}", "오류", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
 
-                isNew = false;
+               
             }
 
 
@@ -358,7 +246,113 @@ namespace BookRentalShopApp
 
         }
 
-        
+
+        /// <summary>
+        /// 입력(수정)처리 프로세스
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
+        private void SaveData()
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Helper.Common.ConnString))
+                {
+                    if (conn.State == ConnectionState.Closed) conn.Open();
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.Connection = conn;
+
+                    var query = "";
+
+                    if (isNew == true) // ISNERT
+                    {
+                        query = @"INSERT INTO [dbo].[bookstbl]
+                                       ([Author]
+                                       ,[Division]
+                                       ,[Names]
+                                       ,[ReleaseDate]
+                                       ,[ISBN]
+                                       ,[Price]
+                                       ,[Descriptions])
+                                 VALUES
+                                       (@Author
+                                       ,@Division
+                                       ,@Names
+                                       ,@ReleaseDate
+                                       ,@ISBN
+                                       ,@Price
+                                       ,@Descriptions) ";
+                    }
+                    else // UPDATE
+                    {
+                        query = @"UPDATE [dbo].[bookstbl]
+                                       SET [Author] = @Author
+                                          ,[Division] = @Division
+                                          ,[Names] = @Names
+                                          ,[ReleaseDate] = @ReleaseDate
+                                          ,[ISBN] = @ISBN
+                                          ,[Price] = @Price
+                                          ,[Descriptions] = @Descriptions
+                                     WHERE Idx = @Idx ";
+                    }
+                    cmd.CommandText = query;
+
+                    var pAuthor = new SqlParameter("@Author", SqlDbType.NVarChar, 50);
+                    pAuthor.Value = TxtAuthor.Text;
+                    cmd.Parameters.Add(pAuthor);
+
+                    var pDivision = new SqlParameter("@Division", SqlDbType.VarChar, 8);
+                    pDivision.Value = CboDivision.SelectedValue; // B001
+                    cmd.Parameters.Add(pDivision);
+
+                    var pNames = new SqlParameter("@Names", SqlDbType.NVarChar, 100);
+                    pNames.Value = TxtNames.Text;
+                    cmd.Parameters.Add(pNames);
+
+                    var pReleaseDate = new SqlParameter("@ReleaseDate", SqlDbType.Date);
+                    pReleaseDate.Value = DtpReleaseDate.Value;
+                    cmd.Parameters.Add(pReleaseDate);
+
+                    var pISBN = new SqlParameter("@ISBN", SqlDbType.VarChar, 200);
+                    pISBN.Value = TxtISBN.Text;
+                    cmd.Parameters.Add(pISBN);
+
+                    var pPrice = new SqlParameter("@Price", SqlDbType.Decimal);
+                    pPrice.Value = TxtPrice.Text;
+                    cmd.Parameters.Add(pPrice);
+
+                    var pDescriptions = new SqlParameter("@Descriptions", SqlDbType.NVarChar);
+                    pDescriptions.Value = Helper.Common.ReplaceCmdText(TxtDescriptions.Text);
+                    cmd.Parameters.Add(pDescriptions);
+
+                    if (isNew == false) // Update 일때만 처리
+                    {
+                        var pIdx = new SqlParameter("@Idx", SqlDbType.Int);
+                        pIdx.Value = TxtIdx.Text;
+                        cmd.Parameters.Add(pIdx);
+                    }
+
+                    var result = cmd.ExecuteNonQuery();
+                    if (result == 1)
+                    {
+                        MetroMessageBox.Show(this, "저장 성공", "저장",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MetroMessageBox.Show(this, "저장 실패", "저장",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MetroMessageBox.Show(this, $"예외발생 : {ex.Message}", "오류", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
 
 
 

@@ -28,6 +28,8 @@ namespace BookRentalShopApp
 
         private void BtnLogin_Click(object sender, EventArgs e)
         {
+            var strUserId = ""; // 
+
             //MessageBox.Show("로그인 처리!");
             if (string.IsNullOrEmpty(TxtUserId.Text)|| string.IsNullOrEmpty(TxtPassword.Text)) //아이디 패스워드 값이 비거나 없을때
             {
@@ -41,12 +43,13 @@ namespace BookRentalShopApp
                 //SqlConnection 연결
                 using (SqlConnection conn = new SqlConnection(Helper.Common.ConnString))
                 {
-                    string strUserId = "";
+                   
                     if (conn.State == ConnectionState.Closed) conn.Open();
 
                     var query = "SELECT userID FROM membertbl" +
                         " WHERE userID = @userID" +
-                        "  AND passwords = @passwords ";
+                        "  AND passwords = @passwords " +
+                         "   AND levels = 'S' ";
 
                     //SqlCommand 생성
                     SqlCommand cmd = new SqlCommand(query, conn);
@@ -64,10 +67,10 @@ namespace BookRentalShopApp
 
                     //Reader로 처리...
                     reader.Read();
-                    strUserId = reader["userID"] != null ? reader["userID"].ToString() : "";
-                    reader.Close();
+                    strUserId = reader["userID"] != null ? reader["userID"].ToString() : ""; //삼항 연산자
+                    reader.Close(); //1
 
-                    //확인
+                    //확인 MessageBox.Show(strUserId);
                     if (string.IsNullOrEmpty(strUserId))
                     {
                         MetroMessageBox.Show(this, "접속 실패", "로그인 실패", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -78,8 +81,8 @@ namespace BookRentalShopApp
                         var updateQuery = $@"UPDATE membertbl SET lastLoginDt = GETDATE(), 
                                             loginIpAddr = '{Helper.Common.GetLocalIp()}'
                                             WHERE userId = '{strUserId}' "; // 2)로그인 정보 남기기
-                        cmd.CommandText = updateQuery;
-                        cmd.ExecuteNonQuery();
+                        cmd.CommandText = updateQuery; //3
+                        cmd.ExecuteNonQuery(); //4
                         MetroMessageBox.Show(this, "접속성공", "로그인 성공", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
                     }
