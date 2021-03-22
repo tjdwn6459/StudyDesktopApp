@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Frame x:Name="MainFrame" NavigationUIVisibility="Visible" Source="/WpfPracticeApp;component/Products.xaml" />
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Visible" Source="/WpfPracticeApp;component/MainMenu.xaml" Background="#FFF0DCF0" />
     </Grid>
 </Window>

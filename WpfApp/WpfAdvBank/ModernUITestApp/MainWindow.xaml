@@ -15,6 +15,14 @@
     GlowBrush="{DynamicResource MahApps.Brushes.Accent}"
     >
     <Grid>
-        
+        <Button Content="Click" HorizontalAlignment="Left" Height="153.363" Margin="192.749,143.516,0,0" VerticalAlignment="Top" Width="319.843">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+
     </Grid>
 </mah:MetroWindow>

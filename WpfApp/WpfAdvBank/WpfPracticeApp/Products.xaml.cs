@@ -21,25 +21,34 @@ namespace WpfPracticeApp
     /// </summary>
     public partial class Products : Page
     {
+        private ProductsFactory factory;
         public Products()
         {
             InitializeComponent();
         }
         private void Page_Initalized(object sender, EventArgs e)
         {
-            var cars = new List<Car>();
-            for (int i = 0; i < 10; i++)
-            {
-                byte red =(byte) (i % 3 == 0 ? 255 : (i * 50) % 255);
-                byte green = 0;
-                byte Blue = (byte)(i % 3 == 0 ? 255 : (i * 50) % 255);
-                cars.Add(new Car() {
-                    Speed = i * 10 ,
-                    MainColor = Color.FromRgb(red, green, Blue)
-                });
-            }
+            //var cars = new List<Car>();
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    byte red =(byte) (i % 3 == 0 ? 255 : (i * 50) % 255);
+            //    byte green = 0;
+            //    byte Blue = (byte)(i % 3 == 0 ? 255 : (i * 50) % 255);
+            //    cars.Add(new Car() {
+            //        Speed = i * 10 ,
+            //        MainColor = Color.FromRgb(red, green, Blue)
+            //    });
+            //}
 
-            this.DataContext = cars;
+            //this.DataContext = cars;
+            factory = new ProductsFactory();
+
+            GrdProducts.ItemsSource = factory.GetAllProducts();
+        }
+
+        private void TxtSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            GrdProducts.ItemsSource = factory.FindProducts(TxtSearch.Text);
         }
     }
 }

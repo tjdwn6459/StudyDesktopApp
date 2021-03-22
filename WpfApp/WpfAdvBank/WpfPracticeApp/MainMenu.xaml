@@ -21,16 +21,34 @@
         </Grid.ColumnDefinitions>
         <Button x:Name="BtnProducts" 
                 Grid.Row="1" Grid.Column="0"
-                Content="Products" Margin="10" Click="BtnProducts_Click" Background="#FFCD91D6" />
+                Content="Products" Margin="10" Click="BtnProducts_Click"
+                Background="#FFCD91D6" />
         <Button x:Name="BtnLiveSupport"
                 Grid.Row="1" Grid.Column="1"
-                Content="LiveSupport" Margin="10" Click="BtnLiveSupport_Click"  Background="#FFCD91D6"/>
+                Content="LiveSupport" Margin="10" Click="BtnLiveSupport_Click" 
+                Background="#FFCD91D6"/>
         <Button x:Name="BtnEmailSupport" 
                 Grid.Row="1" Grid.Column="2" 
-                Content="EmailSupport" Margin="10" Click="BtnEmailSupport_Click"  Background="#FFCD91D6" />
+                Content="EmailSupport" Margin="10" Click="BtnEmailSupport_Click"  Background="#FFCD91D6" >
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}" >
+                    <Grid>
+                        <Rectangle Fill="MediumPurple"
+                                   Stroke="DarkGoldenrod" StrokeThickness="3"
+                                   RadiusX="12" RadiusY="12" />
+                        <Label Content="{TemplateBinding Content}"
+                               Foreground="White"
+                               HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+                        
+                    </Grid>
+
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
 
         <Label Content="Adventure Works" Grid.Row="2" Grid.ColumnSpan="3" 
                Grid.Column="0" 
-               FontSize="36" HorizontalAlignment="Center" />
+               FontSize="36" HorizontalAlignment="Center" FontStyle="Italic"   />
     </Grid>
 </Page>
