@@ -115,6 +115,6 @@
                     </oxy:Plot.Series>
                 </oxy:Plot>
             </Grid>
-        </Grid>
+        </Grid>   
     </DockPanel>
 </mah:MetroWindow>
