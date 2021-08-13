@@ -46,10 +46,9 @@ namespace BookRentalShopApp
                    
                     if (conn.State == ConnectionState.Closed) conn.Open();
 
-                    var query = "SELECT userID FROM membertbl" +
-                        " WHERE userID = @userID" +
-                        "  AND passwords = @passwords " +
-                         "   AND levels = 'S' ";
+                    var query = @"SELECT userID FROM membertbl
+                        WHERE userID = @userId
+                         AND passwords = @passwords ";
 
                     //SqlCommand 생성
                     SqlCommand cmd = new SqlCommand(query, conn);
